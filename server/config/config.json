@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "tfsmzzvq",
+    "password": "wARfR4JMpf-h68QSA7zzg9uYftU7TTv6",
+    "database": "tfsmzzvq",
+    "host": "echo.db.elephantsql.com",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "tfsmzzvq",
+    "password": "wARfR4JMpf-h68QSA7zzg9uYftU7TTv6",
+    "database": "tfsmzzvq",
+    "host": "echo.db.elephantsql.com",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "tfsmzzvq",
+    "password": "wARfR4JMpf-h68QSA7zzg9uYftU7TTv6",
+    "database": "tfsmzzvq",
+    "host": "echo.db.elephantsql.com",
+    "dialect": "postgres"
+  }
+}
