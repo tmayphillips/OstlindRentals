@@ -33,7 +33,7 @@ app.post('/register',(req,res) => {
   })
 })
 
-app.post('/api/availableRentals',(req,res) => {
+app.post('/api/properties',(req,res) => {
   let rentalid = req.body.rentalid
   let address = req.body.address
   let city = req.body.city
@@ -53,22 +53,45 @@ app.post('/api/availableRentals',(req,res) => {
     zipcode: zipcode,
     hcad: hcad,
     insured: insured,
-    insuredamoutn: insuredamount,
+    insuredamount: insuredamount,
     tenantid: tenantid,
     rent: rent
   }
 
   models.Property.create(rental).then(rental => {
-    console.log("Property model created.")
+    console.log('Property model created.')
     console.log(rental)
   })
 
-  res.json({message: 'Property added successfully'})
+  res.json({message: 'Property added successfully.'})
+})
+
+app.post('/api/tenants',(req,res) => {
+  let firstname = req.body.firstname
+  let lastname = req.body.lastname
+  let phoneno = req.body.phoneno
+  let propertyid = req.body.propertyid
+  console.log("propertyid: " + propertyid);
+
+  let tenant = {
+    firstname: firstname,
+    lastname: lastname,
+    phoneno: phoneno,
+    propertyid: propertyid
+  }
+
+  models.Tenant.create(tenant).then(tenant => {
+    console.log('Tenant model created.')
+    console.log(tenant)
+  })
+
+  res.json({message: 'Tenant added successfully.'})
 })
 
 app.get('/api/availableRentals',(req,res) => {
   models.Property.findAll({
   }).then(availableRentalsList => {
+    console.log(availableRentalsList);
     res.json({availableRentalsList: availableRentalsList})
   })
 })
