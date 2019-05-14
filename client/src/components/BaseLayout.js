@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Menu} from './Menu'
+import Menu from './Menu'
 import {Footer} from './Footer'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
