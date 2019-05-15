@@ -16,13 +16,34 @@ class AddTenant extends Component {
       firstname: '',
       lastname: '',
       phoneno: '',
-      propertyid: ''
+      propertyid: '',
+      properties: []
     }
+  }
+
+  componentWillMount() {
+    let propertyList = []
+    let url = 'http://localhost:8080/api/properties'
+    fetch(url)
+    .then(response => response.json())
+    .then(json => {
+      console.log(json.propertyList)
+      propertyList = json.propertyList.map((property) => {
+          return property
+      })
+      this.setState({properties: propertyList})
+    })
   }
 
   handleTextBoxChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
+    })
+  }
+
+  handlePropertyIdChange =(e) => {
+    this.setState({
+      propertyid: e.target.value
     })
   }
 
@@ -41,12 +62,17 @@ class AddTenant extends Component {
         firstname: firstname,
         lastname: lastname,
         phoneno: phoneno,
-        propertyid: propertyid
+        propertyid: parseInt(propertyid,10)
       })
     })
   }
 
   render() {
+    console.log(this.state.properties);
+    let propertyOptions = this.state.properties.map((property) =>
+      <option value={property.id}>{property.address}</option>
+    )
+    console.log(propertyOptions);
     return (
       <Container>
         <div>
@@ -76,8 +102,10 @@ class AddTenant extends Component {
               </Col>
               <Col md={6}>
                 <FormGroup>
-                  <Label for="propertyid">Property ID</Label>
-                  <Input type="number" onChange={this.handleTextBoxChange} name="propertyid" id="propertyid" />
+                  <Label for="propertyid">Property</Label>
+                  <Input type="select" onChange={this.handlePropertyIdChange} name="propertyid" id="propertyid" value={this.state.propertyid}>
+                    {propertyOptions}
+                  </Input>
                 </FormGroup>
               </Col>
             </Row>

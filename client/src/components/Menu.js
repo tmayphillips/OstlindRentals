@@ -42,16 +42,10 @@ export default class Menu extends Component {
                 <NavLink href="/admin/addtenant">Add Tenant</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/admin/addrepair">Add Repair</NavLink>
-              </NavItem>
-              <NavItem>
                 <NavLink href="/admin/properties">Properties</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/admin/applications">Applications</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/admin/repairs">Repair History</NavLink>
               </NavItem>
             </Nav>
           </Collapse>

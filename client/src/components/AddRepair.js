@@ -27,7 +27,6 @@ class AddRepair extends Component {
   }
 
   handleAddRepair = (
-    propertyid,
     daterepaired,
     title,
     description
@@ -38,7 +37,7 @@ class AddRepair extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        propertyid: propertyid,
+        propertyid: this.props.match.params.propertyid,
         daterepaired: daterepaired,
         title: title,
         description: description
@@ -50,16 +49,10 @@ class AddRepair extends Component {
     return (
       <Container>
         <div>
-          <h1>Add Repair</h1>
+          <h1>Add Repair for {this.props.match.params.address}</h1>
           <h6>Only available for admin users</h6>
           <Form>
             <Row form>
-              <Col md={6}>
-                <FormGroup>
-                  <Label for="propertyid">Property</Label>
-                  <Input type="text" onChange={this.handleTextBoxChange} name="propertyid" id="propertyid" />
-                </FormGroup>
-              </Col>
               <Col md={6}>
                 <FormGroup>
                   <Label for="daterepaired">Date Repaired</Label>
@@ -74,6 +67,8 @@ class AddRepair extends Component {
                   <Input type="text" onChange={this.handleTextBoxChange} name="title" id="title" />
                 </FormGroup>
               </Col>
+            </Row>
+            <Row form>
               <Col md={6}>
                 <FormGroup>
                   <Label for="description">Description</Label>
@@ -81,7 +76,7 @@ class AddRepair extends Component {
                 </FormGroup>
               </Col>
             </Row>
-            <Button onClick={() => this.handleAddRepair(this.state.propertyid,this.state.daterepaired,this.state.title,this.state.description)} type="button">Submit</Button>
+            <Button onClick={() => this.handleAddRepair(this.state.daterepaired,this.state.title,this.state.description)} type="button">Submit</Button>
           </Form>
         </div>
       </Container>

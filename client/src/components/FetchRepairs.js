@@ -20,18 +20,21 @@ class FetchRepairs extends Component {
     .then(response => response.json())
     .then(json => {
       console.log(json.repairList)
+      console.log(parseInt(this.props.propertyid,10));
       let repairs = json.repairList.map((repair) => {
-        return (
-          <Container key = {repair.id}>
-            <div>
-              <li>
-              <h3>{repair.propertyid}</h3>
-              <h3>{repair.title}</h3>
-              <h5>{repair.description}</h5>
-              </li>
-            </div>
-          </Container>
-        )
+        if(repair.propertyid == parseInt(this.props.propertyid,10)) {
+          return (
+            <Container key = {repair.id}>
+              <div>
+                <li>
+                <h3>{this.props.address}</h3>
+                <h3>{repair.title}</h3>
+                <h5>{repair.description}</h5>
+                </li>
+              </div>
+            </Container>
+          )
+        }
       })
       this.setState({repairs: repairs})
     })
