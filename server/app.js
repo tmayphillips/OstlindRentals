@@ -138,6 +138,27 @@ app.post('/api/applications',(req,res) => {
   res.json({message: 'Application added successfully.'})
 })
 
+app.post('/api/repairs',(req,res) => {
+  let propertyid = req.body.propertyid
+  let daterepaired = req.body.daterepaired
+  let title = req.body.title
+  let description = req.body.description
+
+  let repair = {
+    propertyid: propertyid,
+    daterepaired: daterepaired,
+    title: title,
+    description: description
+  }
+
+  models.Repair.create(repair).then(repair => {
+    console.log('Repair model created.')
+    console.log(repair)
+  })
+
+  res.json({message: 'Repair added successfully.'})
+})
+
 app.get('/api/properties',(req,res) => {
   models.Property.findAll({
   }).then(propertyList => {
@@ -151,6 +172,22 @@ app.get('/api/applications',(req,res) => {
   }).then(applicationList => {
     console.log(applicationList);
     res.json({applicationList: applicationList})
+  })
+})
+
+app.get('/api/repairs',(req,res) => {
+  models.Repair.findAll({
+  }).then(repairList => {
+    console.log(repairList);
+    res.json({repairList: repairList})
+  })
+})
+
+app.get('/api/tenants',(req,res) => {
+  models.Tenant.findAll({
+  }).then(tenantList => {
+    console.log(tenantList);
+    res.json({tenantList: tenantList})
   })
 })
 

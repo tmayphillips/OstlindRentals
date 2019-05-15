@@ -5,10 +5,14 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import BaseLayout from './components/BaseLayout'
 import {AvailableRentals} from './components/AvailableRentals'
-import {AllRentals} from './components/AllRentals'
+import {AllProperties} from './components/AllProperties'
+import {Applications} from './components/Applications'
+import {Repairs} from './components/Repairs'
 import AddProperty from './components/AddProperty'
 import AddTenant from './components/AddTenant'
+import AddRepair from './components/AddRepair'
 import Apply from './components/Apply'
+import {Tenants} from './components/Tenants'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import reducer from './store/reducers/reducer'
@@ -34,8 +38,12 @@ ReactDOM.render(
           <Route path = "/" exact component={AvailableRentals} />
           <Route path = "/admin/addproperty" exact component={AddProperty} />
           <Route path = "/admin/addtenant" exact component={AddTenant} />
+          <Route path = "/admin/addrepair" exact component={AddRepair} />
           <Route path = "/apply/:rentalId" exact component={Apply} />
-          <Route path = "/admin/properties" exact component={AllRentals} />
+          <Route path = "/admin/tenants/:tenantid" exact component={Tenants} />
+          <Route path = "/admin/properties" exact component={AllProperties} />
+          <Route path = "/admin/applications" exact component={Applications} />
+          <Route path = "/admin/repairs" exact component={Repairs} />
         </Switch>
       </BaseLayout>
     </BrowserRouter>

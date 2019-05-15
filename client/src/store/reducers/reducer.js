@@ -3,7 +3,7 @@ import { connect } from 'react-dom'
 
 const initialState = {
   users: '',
-  rentalid: ''
+  properties: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -13,6 +13,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         rentalid: action.rentalid
       }
+      case actionTypes.ADD_NEW_PROPERTY:
+        return {
+          ...state,
+          properties: state.properties.concat(action.payload)
+        }
   }
   return state
 }
