@@ -38,12 +38,12 @@ ReactDOM.render(
           <Route path = "/" exact component={AvailableRentals} />
           <Route path = "/admin/addproperty" exact component={AddProperty} />
           <Route path = "/admin/addtenant" exact component={AddTenant} />
-          <Route path = "/admin/addrepair" exact component={AddRepair} />
+          <Route path = "/admin/addrepair/:propertyid/:address" exact component={AddRepair} />
           <Route path = "/apply/:rentalId" exact component={Apply} />
           <Route path = "/admin/tenants/:tenantid" exact component={Tenants} />
           <Route path = "/admin/properties" exact component={AllProperties} />
           <Route path = "/admin/applications" exact component={Applications} />
-          <Route path = "/admin/repairs" exact component={Repairs} />
+          <Route path = "/admin/repairs/:propertyid/:address" exact component={Repairs} />
         </Switch>
       </BaseLayout>
     </BrowserRouter>

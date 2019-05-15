@@ -21,6 +21,21 @@ class FetchAllProperties extends Component {
     this.props.history.push('/admin/tenants/'+tenantid)
   }
 
+  handleViewRepairs = (propertyid,address) => {
+    console.log("Handle View Repairs")
+    console.log(propertyid)
+    this.props.history.push('/admin/repairs/'+propertyid+'/'+address)
+  }
+
+  handleAddRepair = (propertyid,address) => {
+    console.log("Handle Add Repair")
+    console.log(propertyid)
+    console.log(address);
+    this.props.history.push('/admin/addrepair/'+propertyid+'/'+address)
+  }
+
+
+
   componentDidMount() {
     let url = 'http://localhost:8080/api/properties'
     fetch(url)
@@ -35,8 +50,8 @@ class FetchAllProperties extends Component {
               <h5>{property.city}, {property.state} {property.zipcode}</h5>
               <ButtonGroup>
                 <Button outline color="primary" type="button" onClick={() => this.handleViewTenant(property.tenantid)}>View Tenant</Button>
-                <Button outline color="primary">View Repair Log</Button>
-                <Button outline color="primary" type="button" >Add Repair</Button>
+                <Button outline color="primary"type="button" onClick={() => this.handleViewRepairs(property.id, property.address)}>View Repair Log</Button>
+                <Button outline color="primary" type="button" onClick={() => this.handleAddRepair(property.id, property.address)}>Add Repair</Button>
               </ButtonGroup>
               </li>
             </div>

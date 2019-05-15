@@ -245,8 +245,8 @@ class Apply extends Component {
               <FormGroup>
                 <Label for="verifyMethod">Select how you would like your income verified.</Label>
                 <Input type="select" name="verifyMethod" id="verifyMethod">
-                  <option>Upload paystub</option>
-                  <option>Call my supervisor</option>
+                  <option value="paystub">Upload paystub</option>
+                  <option value="supervisor">Call my supervisor</option>
                 </Input>
               </FormGroup>
             </Col>
