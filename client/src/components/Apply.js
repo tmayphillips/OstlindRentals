@@ -9,8 +9,12 @@ import {
   Input,
   Alert,
   Card,
-  CardTitle
+  CardTitle,
+  Button
 } from 'reactstrap'
+import firebase from "firebase";
+import FileUploader from "react-firebase-file-uploader";
+import ImageUpload from './ImageUpload'
 
 
 class Apply extends Component {
@@ -19,19 +23,25 @@ class Apply extends Component {
     this.state = {
       firstName: '',
       lastName: '',
-      coTenantFirstName: '',
-      coTenantLastName: '',
-      otherResidents: '',
       dl: '',
       dlState: '',
       ssn: '',
+      coFirstName: '',
+      coLastName: '',
+      coDl: '',
+      coDlState: '',
+      coSsn: '',
+      otherResidents: '',
       currentIncome: '',
       currentHouseholdIncome: '',
       currentPayment: '',
       employer: '',
       supervisor: '',
       supervisorPhoneNo: '',
-      verifyMethod: ''
+      verifyMethod: '',
+      isUploading: false,
+      progress: 0,
+      files: []
     }
   }
 
@@ -39,6 +49,20 @@ class Apply extends Component {
     this.setState({
       [e.target.name]: e.target.value
     })
+  }
+
+  customOnChangeHandler = (event) => {
+    const { target: { files } } = event;
+    const filesToStore = [];
+    files.forEach(file => filesToStore.push(file));
+    this.setState({ files: filesToStore });
+  }
+
+  startUploadManually = () => {
+    const { files } = this.state;
+    files.forEach(file => {
+      this.fileUploader.startUpload(file)
+    });
   }
 
   handleAddApplication = (
@@ -95,7 +119,7 @@ class Apply extends Component {
     return (
       <Container>
         <div>
-          <h4>Application for Rental Property ID: {this.props.match.params.rentalId}</h4>
+          <h4>Application for Rental Property {this.props.match.params.rentalId}</h4>
           <Form>
           <Row form>
             <Col md={6}>
@@ -227,13 +251,31 @@ class Apply extends Component {
               </FormGroup>
             </Col>
             <Col md={6}>
-              <FormGroup>
-                <Label for="upload">Upload required documents (driver's licence, paystub)</Label>
-                <Input type="file" name="upload" id="upload" />
-              </FormGroup>
+              <ImageUpload />
             </Col>
           </Row>
+            <Button outline color="primary" type="button" onClick={() => this.handleAddApplication(
+              this.state.firstName,
+              this.state.lastName,
+              this.state.dl,
+              this.state.dlState,
+              this.state.ssn,
+              this.state.coFirstName,
+              this.state.coLastName,
+              this.state.coDl,
+              this.state.coDlState,
+              this.state.coSsn,
+              this.state.otherResidents,
+              this.state.currentIncome,
+              this.state.currentHouseholdIncome,
+              this.state.currentPayment,
+              this.state.employer,
+              this.state.supervisor,
+              this.state.supervisorPhoneNo,
+              this.state.verifyMethod
+            )}>Apply</Button>
           </Form>
+
         </div>
       </Container>
     )
