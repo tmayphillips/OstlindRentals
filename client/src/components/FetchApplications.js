@@ -4,12 +4,13 @@ import {connect} from 'react-redux'
 import {
   Container,
   ButtonGroup,
-  Button} from 'reactstrap'
+  Button,
+  Row} from 'reactstrap'
 
 class FetchApplications extends Component {
   constructor() {
     super()
-    this.state. = {
+    this.state = {
       applications: []
     }
   }
@@ -24,9 +25,12 @@ class FetchApplications extends Component {
         return (
           <Container key = {application.id}>
             <div>
-              <li>
-                <h3>{application.firstname} {application.lastname}</h3>
-              </li>
+              <Row>
+                <li>
+                  <h3>{application.firstname} {application.lastname}</h3>
+                  <Button>View Details</Button>
+                </li>
+              </Row>
             </div>
           </Container>
         )
