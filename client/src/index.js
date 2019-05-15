@@ -5,6 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import BaseLayout from './components/BaseLayout'
 import {AvailableRentals} from './components/AvailableRentals'
+import {AllRentals} from './components/AllRentals'
 import AddProperty from './components/AddProperty'
 import AddTenant from './components/AddTenant'
 import Apply from './components/Apply'
@@ -15,17 +16,6 @@ import {createStore, combineReducers, applyMiddleware, compose} from 'redux'
 import {Provider} from 'react-redux'
 import thunk from 'redux-thunk'
 import * as firebase from 'firebase'
-
-var firebaseConfig = {
-  apiKey: "AIzaSyDIcqZiFlBZS2c6kEWUn2A2InQaJz428ds",
-  authDomain: "ostlindthomas-f8c7e.firebaseapp.com",
-  databaseURL: "https://ostlindthomas-f8c7e.firebaseio.com",
-  projectId: "ostlindthomas-f8c7e",
-  storageBucket: "ostlindthomas-f8c7e.appspot.com",
-  messagingSenderId: "562228508893",
-  appId: "1:562228508893:web:dbafad534ba3ebb4"
-};
-firebase.initializeApp(firebaseConfig)
 
 const rootReducer = combineReducers({
   reducer: reducer
@@ -45,6 +35,7 @@ ReactDOM.render(
           <Route path = "/admin/addproperty" exact component={AddProperty} />
           <Route path = "/admin/addtenant" exact component={AddTenant} />
           <Route path = "/apply/:rentalId" exact component={Apply} />
+          <Route path = "/admin/properties" exact component={AllRentals} />
         </Switch>
       </BaseLayout>
     </BrowserRouter>

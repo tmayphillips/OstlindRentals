@@ -88,11 +88,69 @@ app.post('/api/tenants',(req,res) => {
   res.json({message: 'Tenant added successfully.'})
 })
 
-app.get('/api/availableRentals',(req,res) => {
+app.post('/api/applications',(req,res) => {
+  let firstName = req.body.firstName
+  let lastName = req.body.lastName
+  let dl = req.body.dl
+  let dlState = req.body.dlState
+  let ssn = req.body.ssn
+  let coFirstName = req.body.coFirstName
+  let coLastName = req.body.coLastName
+  let coDl = req.body.coDl
+  let coDlState = req.body.coDlState
+  let coSsn = req.body.coSsn
+  let otherResidents = req.body.otherResidents
+  let currentIncome = req.body.currentIncome
+  let currentHouseholdIncome = req.body.currentHouseholdIncome
+  let currentPayment = req.body.currentPayment
+  let employer = req.body.employer
+  let supervisor = req.body.supervisor
+  let supervisorPhoneNo = req.body.supervisorPhoneNo
+  let verifyMethod = req.body.verifyMethod
+  console.log(firstName);
+
+  let application = {
+    firstname: firstName,
+    lastname: lastName,
+    dl: dl,
+    dlstate: dlState,
+    ssn: ssn,
+    cofirstname: coFirstName,
+    colastname: coLastName,
+    codl: coDl,
+    codlstate: coDlState,
+    cossn: coSsn,
+    otherresidents: otherResidents,
+    currentincome: currentIncome,
+    currenthouseholdincome: currentHouseholdIncome,
+    currentpayment: currentPayment,
+    employer: employer,
+    supervisor: supervisor,
+    supervisorphoneno: supervisorPhoneNo,
+    verifymethod: verifyMethod
+  }
+
+  models.Application.create(application).then(application => {
+    console.log('Appication model created.')
+    console.log(application)
+  })
+
+  res.json({message: 'Application added successfully.'})
+})
+
+app.get('/api/properties',(req,res) => {
   models.Property.findAll({
-  }).then(availableRentalsList => {
-    console.log(availableRentalsList);
-    res.json({availableRentalsList: availableRentalsList})
+  }).then(propertyList => {
+    console.log(propertyList);
+    res.json({propertyList: propertyList})
+  })
+})
+
+app.get('/api/applications',(req,res) => {
+  models.Application.findAll({
+  }).then(applicationList => {
+    console.log(applicationList);
+    res.json({applicationList: applicationList})
   })
 })
 
